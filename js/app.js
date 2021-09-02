@@ -7,12 +7,12 @@ document.getElementById('search-btn').addEventListener('click', () =>{
     fetch(url)
     .then(res => res.json())
     // .then(data => console.log(data.docs[0].publish_date))
-    .then(data => displayBooks(data.docs))
+    .then(data => displayBooks(data))
 });
 // display books
 const displayBooks = booksData =>{
     const boooksArea = document.getElementById('result-books');
-    booksData.forEach(element => {
+    booksData.docs.forEach(element => {
         const publishDate = element.publish_date;
         const div = document.createElement('div');
         // div.classList.add('col');
