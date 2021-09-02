@@ -27,7 +27,7 @@ document.getElementById('search-btn').addEventListener('click', () =>{
 const displayBooks = booksData =>{
     Loader.close();
     // display count
-    displayCountResult(booksData.numFound);
+    displayResultCount(booksData.docs.length);
     if(booksData.numFound === 0){
         errorMsg('clear');
         errorMsg('notFound');
@@ -36,18 +36,20 @@ const displayBooks = booksData =>{
     const boooksArea = document.getElementById('result-books');
     // get all books one by one using loop
     booksData.docs.forEach(element => {
-        const publishDate = element.publish_date;
+        const publishYear = element.publish_year;
+        
         const div = document.createElement('div');
         const appendBooks = (coverImg) =>{
             // apppend bools
-            div.innerHTML = `
+            div.innerHTML = ` 
             <div class="col">
                 <div class="card border border-2 shadow" id="book-card">
-                <img src="${coverImg}" class="card-img-top" height="400">
+                <img src="${coverImg}" class="card-img-top p-2" height="400">
                     <div class="card-body">
-                          <h5 class="card-title">${element.title.slice(0,20)}</h5>
-                          <h6>Author : ${element.author_name}</h6>
-                          <h6>Publish on: ${publishDate}</h6>
+                          <h5 class="card-title">${element.title.slice(0,30)}</h5>
+                          <h6><span class="text-info">Author </span> : ${element.author_name}</h6>
+                          <h6><span class="text-info">publisher </span> : ${element.publisher}</h6>
+                          <h6><span class="text-info">Publish on :</span> ${publishYear}</h6>
                     </div>
                 </div>
             </div>
@@ -76,7 +78,7 @@ const clearData = (fileds) =>{
     }
 }
 // msg showing
-const displayCountResult = (value) =>{
+const displayResultCount = (value) =>{
     const displayCount = document.getElementById('result-msg');
     const foundsResult = document.getElementById('founds-result')
     displayCount.style.display = 'block';

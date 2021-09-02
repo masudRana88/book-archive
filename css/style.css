@@ -1,3 +1,6 @@
+body{
+    background-color: rgb(233, 230, 230);
+}
 #result-msg,#noinpute-msg,#notFound-msg{
     display: none;
 }
