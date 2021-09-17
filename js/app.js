@@ -1,6 +1,16 @@
+// searce books by enter button
+const searchBtn = document.getElementById("search-btn");
+const inputFiled = document.getElementById("input-filed");
+
+inputFiled.addEventListener("keypress", function(event) {  
+    if (event.keyCode == 13){
+        searchBtn.click();
+    }
+});
+
 // serch books
-document.getElementById('search-btn').addEventListener('click', () =>{
-    const searchElement = document.getElementById('input-filed');
+searchBtn.addEventListener('click', () =>{
+    const searchElement = inputFiled;
     const serchText = searchElement.value;
    
     // clear privus data
@@ -15,7 +25,7 @@ document.getElementById('search-btn').addEventListener('click', () =>{
     // open spiner
     Loader.open();
     // loade books data
-    const url = `http://openlibrary.org/search.json?q=${serchText}`
+    const url = `https://openlibrary.org/search.json?q=${serchText}`
     fetch(url)
     .then(res => res.json())
     // .then(data => console.log(data))
